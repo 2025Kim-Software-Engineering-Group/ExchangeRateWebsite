@@ -1,4 +1,3 @@
-Name: 鲍睿 BaoRui P2321323
 
 # About the Mini-Project
 
