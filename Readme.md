@@ -66,6 +66,7 @@ __So, Agile is better suited based on these characteristics.__
 
 ## Planning Overview 
 We are going to use Agile SW development process. The above is the outline of our planning.
+![image](img/GANNT.jpg)
 
 ##### Development process
 For any software process, there are four stages:
