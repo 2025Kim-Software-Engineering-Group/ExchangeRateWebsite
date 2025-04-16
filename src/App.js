@@ -53,7 +53,9 @@ const CurrencyConverter = ({
   selectedDate,
   setSelectedDate,
   currencies,
-  t
+  t,
+  timeframe,
+  setTimeframe
 }) => {
   const [fromInput, setFromInput] = useState(fromCurrency);
   const [toInput, setToInput] = useState(toCurrency);
@@ -100,6 +102,21 @@ const CurrencyConverter = ({
   return (
     <div className="converter-container">
       <div className="currency-inputs">
+        {/* 添加时间范围选择器 */}
+        <div className="timeframe-selector">
+          <button
+            className={`timeframe-btn ${timeframe === 'weekly' ? 'active' : ''}`}
+            onClick={() => setTimeframe('weekly')}
+          >
+            {t.weekly}
+          </button>
+          <button
+            className={`timeframe-btn ${timeframe === 'yearly' ? 'active' : ''}`}
+            onClick={() => setTimeframe('yearly')}
+          >
+            {t.yearly}
+          </button>
+        </div>
         {/* Currency Selection Row */}
         <div className="currency-row">
           <div className="currency-input fromCurrency">
@@ -301,6 +318,7 @@ const PopularCurrencies = ({ currencyRates, currencies, t }) => (
 
 // 主组件
 export default function App() {
+  const [timeframe, setTimeframe] = useState('weekly');
   const [fromCurrency, setFromCurrency] = useState('USD');
   const [toCurrency, setToCurrency] = useState('EUR');
   const [amount, setAmount] = useState(1);
@@ -322,48 +340,84 @@ export default function App() {
       try {
         // 获取实时汇率
         const rateResponse = await fetch(
-          `https://v6.exchangerate-api.com/v6/f74f34edf584668426ca1f2e/latest/${fromCurrency}`
+          `https://v6.exchangerate-api.com/v6/70cbad844562588cd1b8e54d/latest/${fromCurrency}`
         );
         const rateData = await rateResponse.json();
 
         // 获取历史汇率
-        const dates = [];
-        const rates = [];
-        const endDate = new Date(selectedDate);
-        const startDate = new Date(endDate);
-        startDate.setMonth(startDate.getMonth() - 1);
+        // 历史汇率获取逻辑修改
+        const generateDateArray = () => {
+          const endDate = new Date(selectedDate);
+          const dates = [];
 
-        for (let d = startDate; d <= endDate; d.setDate(d.getDate() + 5)) {
-          const dateStr = d.toISOString().split('T')[0];
-          const historyResponse = await fetch(
-            `https://v6.exchangerate-api.com/v6/f74f34edf584668426ca1f2e/history/${fromCurrency}/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`
-          );
-          const historyData = await historyResponse.json();
-          if (historyData.conversion_rates) {
-            dates.push(dateStr);
-            rates.push(historyData.conversion_rates[toCurrency]);
+          if (timeframe === 'weekly') {
+            // 生成过去7天（包含当天）
+            for (let i = 6; i >= 0; i--) {
+              const date = new Date(endDate);
+              date.setDate(date.getDate() - i);
+              dates.push(new Date(date));
+            }
+          } else {
+            // 生成过去12个月首日（包含当前月）
+            const currentMonth = endDate.getMonth();
+            const currentYear = endDate.getFullYear();
+
+            for (let i = 0; i < 12; i++) {
+              const targetMonth = currentMonth - i;
+              const year = currentYear + Math.floor(targetMonth / 12);
+              const month = (targetMonth + 12) % 12;
+              dates.push(new Date(year, month, 1));
+            }
+            dates.reverse();
           }
+          return dates;
         }
+
+        const dateArray = generateDateArray();
+        const historicalPromises = dateArray.map(async (date) => {
+          const year = date.getFullYear();
+          const month = date.getMonth() + 1; // 月份从1开始
+          const day = date.getDate();
+
+          try {
+            const response = await fetch(
+              `https://v6.exchangerate-api.com/v6/70cbad844562588cd1b8e54d/history/${fromCurrency}/${year}/${month}/${day}`
+            );
+            const data = await response.json();
+
+            return data.conversion_rates?.[toCurrency] ? {
+              date: date.toISOString().split('T')[0],
+              rate: data.conversion_rates[toCurrency]
+            } : null;
+          } catch (error) {
+            console.error('Fetch error:', error);
+            return null;
+          }
+        });
+
+        const historicalResults = await Promise.all(historicalPromises);
+        const validData = historicalResults.filter(item => item !== null);
+
+        setHistoricalRates({
+          labels: validData.map(d => d.date),
+          datasets: [{
+            label: `${fromCurrency} ${t.to} ${toCurrency}`,
+            data: validData.map(d => d.rate),
+            borderColor: '#4bc0c0',
+            tension: 0.1
+          }]
+        });
 
         // 获取所有货币汇率
         const allRatesResponse = await fetch(
-          `https://v6.exchangerate-api.com/v6/f74f34edf584668426ca1f2e/latest/USD`
+          `https://v6.exchangerate-api.com/v6/70cbad844562588cd1b8e54d/latest/USD`
         );
         const allRatesData = await allRatesResponse.json();
 
         // 更新状态
         setExchangeRate(rateData.conversion_rates[toCurrency]);
         setLastUpdated(new Date().toLocaleString());
-        setHistoricalRates({
-          labels: dates,
-          datasets: [{
-            label: `${fromCurrency} ${t.to} ${toCurrency}`,
-            data: rates,
-            fill: false,
-            borderColor: '#4bc0c0',
-            tension: 0.1
-          }]
-        });
+        
         setCurrencyRates(allRatesData.conversion_rates);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -371,7 +425,7 @@ export default function App() {
     };
 
     fetchData();
-  }, [fromCurrency, toCurrency, selectedDate, t]);
+  }, [fromCurrency, toCurrency, selectedDate, t, timeframe]);
 
   return (
     <div className="app">
@@ -384,6 +438,8 @@ export default function App() {
       <div className="main-container">
         <div className="left-panel">
           <CurrencyConverter
+            timeframe={timeframe}
+            setTimeframe={setTimeframe}
             fromCurrency={fromCurrency}
             setFromCurrency={setFromCurrency}
             toCurrency={toCurrency}
