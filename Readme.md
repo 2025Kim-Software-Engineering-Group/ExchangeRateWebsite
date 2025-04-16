@@ -161,7 +161,9 @@ As a small-scale group who only have 5 people, our division of labor is simple. 
 ----
 ##### Schedule
 Our product development schedule is iterable :
-User requirement specification--> Design and development --> Testing and validation --> RELEASE --> New user requirement --> Design and development --> Testing and validation --> RELEASE
+User requirement specification--> Design and development --> Testing and validation --> RELEASE --> New user requirement --> Design and development --> Testing and validation --> RELEASE                                                                                                                                                    
+
+![image](img/development_process.png)
 
 
 ***To be specific,***
