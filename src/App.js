@@ -23,6 +23,7 @@ ChartJS.register(
   Legend
 );
 
+// 语言选择器组件
 const LanguageSelector = ({ currentLanguage, setCurrentLanguage }) => {
   const t = translations[currentLanguage];
   return (
@@ -114,7 +115,7 @@ const CurrencyConverter = ({
             />
             {showDropdownFrom && (
               <div className="dropdown">
-                {currencies.filter(currency => 
+                {currencies.filter(currency =>
                   currency.toUpperCase().includes(fromInput.toUpperCase())
                 ).map(currency => (
                   <div
@@ -128,13 +129,55 @@ const CurrencyConverter = ({
               </div>
             )}
           </div>
-
+          {/* From Currency 的国旗 */}
+          <div className="country-flag">
+            {fromCurrency && (
+              <img
+                style={{
+                  width: '48px',      // 与API国旗宽度一致
+                  height: '32px',     // 3:2标准国旗比例 (48*2/3)
+                  objectFit: 'cover', // 保持比例填充容器
+                  display: 'block'    // 避免行内元素间隙
+                }}
+                src={
+                  fromCurrency.slice(0, 2) === 'EU'
+                    ? '/EU.jpg'
+                    : `https://flagsapi.com/${fromCurrency.slice(0, 2)}/flat/48.png`
+                }
+                alt={`${fromCurrency} flag`}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+            )}
+          </div>
           <div className="exchange-button-container">
             <button className="exchange-button" onClick={handleExchange}>
               <span className="exchange-icon">⇄</span>
             </button>
           </div>
-
+          {/* To Currency 的国旗 */}
+          <div className="country-flag">
+            {toCurrency && (
+              <img
+                style={{
+                  width: '48px',
+                  height: '32px',
+                  objectFit: 'cover',
+                  display: 'block'
+                }}
+                src={
+                  toCurrency.slice(0, 2) === 'EU'
+                    ? '/EU.jpg'
+                    : `https://flagsapi.com/${toCurrency.slice(0, 2)}/flat/48.png`
+                }
+                alt={`${toCurrency} flag`}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+            )}
+          </div>
           <div className="currency-input toCurrency">
             <input
               type="text"
@@ -148,7 +191,7 @@ const CurrencyConverter = ({
             />
             {showDropdownTo && (
               <div className="dropdown">
-                {currencies.filter(currency => 
+                {currencies.filter(currency =>
                   currency.toUpperCase().includes(toInput.toUpperCase())
                 ).map(currency => (
                   <div
@@ -202,7 +245,7 @@ const CurrencyConverter = ({
     </div>
   );
 };
-
+// 历史汇率图表组件
 const HistoricalChart = ({ historicalRates, fromCurrency, toCurrency, t }) => {
   const chartOptions = {
     responsive: true,
@@ -236,7 +279,7 @@ const HistoricalChart = ({ historicalRates, fromCurrency, toCurrency, t }) => {
   );
 };
 
-
+// 热门货币列表组件
 const PopularCurrencies = ({ currencyRates, currencies, t }) => (
   <div className="watchlist-container">
     <h2>{t.popularCurrencies}</h2>
@@ -256,7 +299,7 @@ const PopularCurrencies = ({ currencyRates, currencies, t }) => (
   </div>
 );
 
-
+// 主组件
 export default function App() {
   const [fromCurrency, setFromCurrency] = useState('USD');
   const [toCurrency, setToCurrency] = useState('EUR');
@@ -277,11 +320,13 @@ export default function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // 获取实时汇率
         const rateResponse = await fetch(
           `https://v6.exchangerate-api.com/v6/f74f34edf584668426ca1f2e/latest/${fromCurrency}`
         );
         const rateData = await rateResponse.json();
 
+        // 获取历史汇率
         const dates = [];
         const rates = [];
         const endDate = new Date(selectedDate);
@@ -300,13 +345,13 @@ export default function App() {
           }
         }
 
-
+        // 获取所有货币汇率
         const allRatesResponse = await fetch(
           `https://v6.exchangerate-api.com/v6/f74f34edf584668426ca1f2e/latest/USD`
         );
         const allRatesData = await allRatesResponse.json();
 
-
+        // 更新状态
         setExchangeRate(rateData.conversion_rates[toCurrency]);
         setLastUpdated(new Date().toLocaleString());
         setHistoricalRates({

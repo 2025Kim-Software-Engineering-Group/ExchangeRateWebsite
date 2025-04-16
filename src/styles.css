@@ -33,7 +33,7 @@ h1 {
 
 /* Converter container styles */
 .converter-container {
-  background: #ffffff; /* White */
+  background: #7df8f6; /* White */
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
@@ -54,6 +54,9 @@ h1 {
   width: 100%; /* Ensure the row takes full width */
 }
 
+.country-flag{
+  flex: 0 0 auto;
+}
 /* Currency input styles */
 .currency-input {
   position: relative;
