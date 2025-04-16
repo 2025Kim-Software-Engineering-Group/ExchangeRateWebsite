@@ -205,6 +205,17 @@ User requirement specification--> Design and development --> Testing and validat
 __Note:__ Throughout the project, the Tech Leader(***Kurisu***) plays a crucial role in providing guidance and coordination to ensure smooth collaboration and successful execution.
 
 ---
+
+##### Test Summary
+
+| Feature                                       | Testing Duration | Test Type                  | Status          | Notes                          |
+|-----------------------------------------------|------------------|----------------------------|-----------------|---------------------------------|
+| Basic Currency Conversion and Historical Exchange Rate Visualization | 1.5 days        | Functional Testing, Edge-Case Testing, API Integration | Passed          | Exchange rate accuracy meets standards; conversion works. |
+| Usability Enhancement Features                | 1 day           | Usability Testing          | Passed          | Smooth user experience verified. |
+| Webpage Aesthetics                            | 0.5 days        | Cross-Browser Compatibility, Responsiveness Testing | Failed          | Left-side window is too large, causing layout issues. |
+
+
+---
 ##### Algorithm
 ---
 
@@ -219,6 +230,7 @@ For example, for those who exchange currency for __travel purposes__, their logi
 For general users __interested in finance__, we could offer stock trend consultations and informative content related to exchange rates.  
 
 Additionally, we aim to __expand the webpage into desktop applications (such as floating windows)__ to make currency inquiries even more convenient.  
+
 
 
 
