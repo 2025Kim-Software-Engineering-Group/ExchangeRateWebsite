@@ -333,6 +333,10 @@ The following external resources/packages are used in this project:
   _Source_: [https://www.npmjs.com](https://www.npmjs.com)  
   _License_: Artistic License 2.0
 
+#### 5. **AI**
+  _Purpose_: English editing, Markdown formatting optimization.  
+  _Source_: [https://www.deepseek.com/](https://www.deepseek.com/) 
+
 ---
 
 ### Original Code
