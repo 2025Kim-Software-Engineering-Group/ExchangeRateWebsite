@@ -283,3 +283,69 @@ Thus, we have:
 
 ---
 
+### Declaration of Third-Party Resources
+
+The following external resources/packages are used in this project:
+
+#### 1. **React Ecosystem**
+- **React** (`react`)  
+  _Purpose_: Core library for building user interfaces  
+  _Source_: [https://react.dev](https://react.dev)  
+  _License_: MIT License
+
+- **React-DOM** (`react-dom`)  
+  _Purpose_: DOM rendering for React  
+  _Source_: [https://react.dev](https://react.dev)  
+  _License_: MIT License
+
+#### 2. **Chart Libraries**
+- **Chart.js** (`chart.js`)  
+  _Purpose_: Data visualization foundation  
+  _Source_: [https://www.chartjs.org](https://www.chartjs.org)  
+  _License_: MIT License
+
+- **react-chartjs-2**  
+  _Purpose_: React wrapper for Chart.js  
+  _Source_: [https://react-chartjs-2.js.org](https://react-chartjs-2.js.org)  
+  _License_: MIT License
+
+#### 3. **APIs**
+- **ExchangeRate-API**  
+  _Purpose_: Real-time/historical currency exchange rates  
+  _Endpoint_: `https://v6.exchangerate-api.com/v6/{API_KEY}/`  
+  _Source_: [https://www.exchangerate-api.com](https://www.exchangerate-api.com)  
+  _Access_: Free tier with API key `70cbad844562588cd1b8e54d`
+
+- **FlagsAPI**  
+  _Purpose_: Country flag images  
+  _Endpoint_: `https://flagsapi.com/{CODE}/flat/48.png`  
+  _Source_: [https://flagsapi.com](https://flagsapi.com)  
+  _License_: Public Domain
+
+#### 4. **Development Environment**
+- **Node.js**  
+  _Purpose_: JavaScript runtime  
+  _Source_: [https://nodejs.org](https://nodejs.org)  
+  _License_: MIT License
+
+- **npm**  
+  _Purpose_: Package management  
+  _Source_: [https://www.npmjs.com](https://www.npmjs.com)  
+  _License_: Artistic License 2.0
+
+---
+
+### Original Code
+All code in the following files is developed by our team:  
+- `index.js`  
+- `App.js`  
+- `styles.css`  
+- `translations.js`  
+
+This includes:  
+- UI components implementation  
+- State management logic  
+- Multilingual support system  
+- CSS styling and responsive design  
+- API integration logic  
+- Historical data processing  
