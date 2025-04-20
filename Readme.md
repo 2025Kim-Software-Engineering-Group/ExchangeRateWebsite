@@ -185,7 +185,7 @@ Our product development schedule is iterable:
      - Fix the handle logic.  
      - Make sure this quick-update does not influence any other functions.  
    - This process spent __1 day__.  
-   - Then we did testing by __QA(Tingshu)__ to make sure that: -it spent __2 days__.  
+   - Then we did testing by __QA(Tingshu)__ to make sure that: -it spent __1 days__.  
      - The System reliability.  
      - Whether the functions are fit users' required.  
      - The functions handle logic are correct.  
@@ -206,34 +206,34 @@ Our product development schedule is iterable:
      - The System reliability.  
      - Whether the functions are fit users' required → webpage fits several devices.  
    - The result was fine.  
-   - Then, we launched the fourth version of Website.  
+   - Then, we launched the fourth version of the Website.  
 
 ---
 
 | **Phase**             | **Task**                                      | **Responsible Person** | **Duration** | **Start Date** | **End Date**   |  
 |-----------------------|-----------------------------------------------|-------------------------|--------------|----------------|----------------|  
-| Project Planning      | Requirement Specification                     | Evelyn                  | 3 days       | Day 1          |                |  
-| Design & Development  | Page design                                   | John Ling               | 1 day        | Day 4          |                |  
-| Design & Development  | System Structure Design                       | Kurisu                  | 1 days       | Day 4          |                |  
-| Design & Development  | Basic and key functions implement             | Xinyuan Cheng           | 4 days       | Day 5          |                |  
-| Testing & Release     | Testing                                       | Tingshu                 | 2 days       | Day 9          |                |  
-| Requirement           | Requirement Specification(update)             | Evelyn                  | 1 day        | Day 11         |                |  
-| Design & Development  | Page design(update)                           | John Ling               | 1 day        | Day 12         |                |  
-| Design & Development  | System Structure Design(update)               | Kurisu                  | 1 day        | Day 13         |                |  
-| Design & Development  | New features implement                        | Xinyuan Cheng           | 1 day        | Day 14         |                |  
-| Testing & Release     | Testing                                       | Tingshu                 | 1 day        | Day 15         |                |  
-| Refactoring           | System Structure Design(update)               | Kurisu                  | 2 days       | Day 16         |                |  
-| Refactoring           | Refactoring                                   | Xinyuan Cheng           | 3 days       | Day 18         |                |  
-| Testing & Release     | Testing                                       | Tingshu                 | 2 days       | Day 21         |                |  
-| Requirement           | Requirement Specification(update)             | Evelyn                  | 0.5 day      | Day 23         |                |  
-| Design & Development  | Page design(update)                           | John Ling               | 0.5 day      | Day 23         |                |  
-| Design & Development  | System Structure Design(update)               | Kurisu                  | 1 day        | Day 24         |                |  
-| Design & Development  | New features implement                        | Xinyuan Cheng           | 1 day        | Day 25         |                |  
-| Fix the bug           | Fix the logic problem                         | Kurisu & Xinyuan Cheng  | 1 day        | Day 26         |                |  
-| Testing & Release     | Testing                                       | Xinyuan Cheng           | 1 day        | Day 27         |                |  
-| Requirement           | Requirement Specification(update)             | Evelyn                  | 0.5 day      | Day 27         |                |  
-| Design & Development  | Page design(update) and CSS implement         | John Ling               | 2.5 days     | Day 27         |                |  
-| Testing & Release     | Testing                                       | Tingshu                 | 1 day        | Day 29         |                |  
+| Project Planning      | Requirement Specification                     | Evelyn                  | 3 days       | Day 1          |   Day 4        |  
+| Design & Development  | Page design                                   | John Ling               | 1 day        | Day 4          |   Day 5        |  
+| Design & Development  | System Structure Design                       | Kurisu                  | 1 days       | Day 4          |   Day 5        |  
+| Design & Development  | Basic and key functions implement             | Xinyuan Cheng           | 4 days       | Day 5          |   Day 9        |  
+| Testing & Release     | Testing                                       | Tingshu                 | 2 days       | Day 9          |   Day 11       |  
+| Requirement           | Requirement Specification(update)             | Evelyn                  | 1 day        | Day 11         |   Day 12       |  
+| Design & Development  | Page design(update)                           | John Ling               | 1 day        | Day 12         |   Day 13       |  
+| Design & Development  | System Structure Design(update)               | Kurisu                  | 1 day        | Day 13         |   Day 14       |  
+| Design & Development  | New features implement                        | Xinyuan Cheng           | 1 day        | Day 14         |   Day 15       |  
+| Testing & Release     | Testing                                       | Tingshu                 | 1 day        | Day 15         |   Day 16       |  
+| Refactoring           | System Structure Design(update)               | Kurisu                  | 2 days       | Day 16         |   Day 18       |  
+| Refactoring           | Refactoring                                   | Xinyuan Cheng           | 3 days       | Day 18         |   Day 21       |  
+| Testing & Release     | Testing                                       | Tingshu                 | 2 days       | Day 21         |   Day 23       |  
+| Requirement           | Requirement Specification(update)             | Evelyn                  | 0.5 day      | Day 23         |   Day 23       |  
+| Design & Development  | Page design(update)                           | John Ling               | 0.5 day      | Day 23         |   Day 23       |  
+| Design & Development  | System Structure Design(update)               | Kurisu                  | 1 day        | Day 24         |   Day 25       |  
+| Design & Development  | New features implement                        | Xinyuan Cheng           | 1 day        | Day 25         |   Day 26       |  
+| Fix the bug           | Fix the logic problem                         | Kurisu & Xinyuan Cheng  | 1 day        | Day 26         |   Day 27       |  
+| Testing & Release     | Testing                                       | Tingshu                 | 1 day        | Day 27         |   Day 28       |  
+| Requirement           | Requirement Specification(update)             | Evelyn                  | 0.5 day      | Day 28         |   Day 28       |  
+| Design & Development  | Page design(update) and CSS implement         | John Ling               | 2.5 days     | Day 28         |   Day 30       |  
+| Testing & Release     | Testing                                       | Tingshu                 | 1 day        | Day 30         |   Day 31       |  
 
 __Note:__ Throughout the project, the Tech Leader(***Kurisu***) plays a crucial role in providing guidance and coordination to ensure smooth collaboration and successful execution.  
 
