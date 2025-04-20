@@ -230,7 +230,7 @@ Our product development schedule is iterable:
 | Fix the bug           | Fix the logic problem                         | Kurisu & Xinyuan Cheng  | 1 day        | Day 25         |   Day 26       |  
 | Testing & Release     | Testing                                       | Tingshu                 | 1 day        | Day 26         |   Day 27       |  
 | Requirement           | Requirement Specification(update)             | Evelyn                  | 0.5 day      | Day 27         |   Day 27       |  
-| Design & Development  | Page design(update) and CSS implement         | John Ling               | 2.5 days     | Day 27         |   Day 29       |  
+| Design & Development  | Page design(update) and CSS implement         | John Ling               | 2.5 days     | Day 27         |   Day 30       |  
 | Testing & Release     | Testing                                       | Tingshu                 | 1 day        | Day 30         |   Day 31       |  
 
 __Note:__ Throughout the project, the Tech Leader(***Kurisu***) plays a crucial role in providing guidance and coordination to ensure smooth collaboration and successful execution.  
