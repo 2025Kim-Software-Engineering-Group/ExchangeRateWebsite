@@ -171,7 +171,7 @@ Our product development schedule is iterable:
    - Then __javascript developer(Xinyuan Cheng).__ implemented the requirements follow the system structure. - it spent __1 day__.  
      - Add the new features → implemented the __Display the country flag__.  
      - Make sure the reliability of the code.  
-   - Before launching the second version, we did testing by __QA(Tingshu)__:  
+   - Before launching the third version, we did testing by __QA(Tingshu)__:  
      - Testing the new feature whether fit users's required.  
      - Testing the reliability of the Website.  
    - The result of testing was fine. - it was spent __1 day__.  
@@ -187,7 +187,7 @@ Our product development schedule is iterable:
      - The System reliability.  
      - Whether the functions are fit users' required.  
      - The functions handle logic are correct.  
-   - Then, we launched the third version of Website.  
+   - Then, we launched the fourth version of Website.  
 
    - We got feedbacks from phone users that they need Website fits their devices.  
    - Thus, __PO (Evelyn)__ collected the following user stories:  
@@ -204,7 +204,7 @@ Our product development schedule is iterable:
      - The System reliability.  
      - Whether the functions are fit users' required → webpage fits several devices.  
    - The result was fine.  
-   - Then, we launched the fourth version of the Website.  
+   - Then, we launched the fifth version of the Website.  
 
 ---
 
@@ -231,7 +231,7 @@ Our product development schedule is iterable:
 | Testing & Release     | Testing                                       | Tingshu                 | 1 day        | Day 26         |   Day 27       |  
 | Requirement           | Requirement Specification(update)             | Evelyn                  | 0.5 day      | Day 27         |   Day 27       |  
 | Design & Development  | Page design(update) and CSS implement         | John Ling               | 2.5 days     | Day 27         |   Day 29       |  
-| Testing & Release     | Testing                                       | Tingshu                 | 1 day        | Day 29         |   Day 30       |  
+| Testing & Release     | Testing                                       | Tingshu                 | 1 day        | Day 30         |   Day 31       |  
 
 __Note:__ Throughout the project, the Tech Leader(***Kurisu***) plays a crucial role in providing guidance and coordination to ensure smooth collaboration and successful execution.  
 
