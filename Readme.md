@@ -214,7 +214,7 @@ Our product development schedule is iterable:
 |-----------------------|-----------------------------------------------|-------------------------|--------------|----------------|----------------|  
 | Project Planning      | Requirement Specification                     | Evelyn                  | 3 days       | Day 1          |   Day 4        |  
 | Design & Development  | Page design                                   | John Ling               | 1 day        | Day 4          |   Day 5        |  
-| Design & Development  | System Structure Design                       | Kurisu                  | 1 days       | Day 4          |   Day 5        |  
+| Design & Development  | System Structure Design                       | Kurisu                  | 1 day        | Day 4          |   Day 5        |  
 | Design & Development  | Basic and key functions implement             | Xinyuan Cheng           | 4 days       | Day 5          |   Day 9        |  
 | Testing & Release     | Testing                                       | Tingshu                 | 2 days       | Day 9          |   Day 11       |  
 | Requirement           | Requirement Specification(update)             | Evelyn                  | 1 day        | Day 11         |   Day 12       |  
