@@ -125,8 +125,6 @@ Our product development schedule is iterable:
         - Perform functional testing, edge-case testing, and API integration testing  
       - Usability Enhancement Features  
         - Focus on usability testing to ensure a smooth user experience.  
-      - Integration of Large Language Models  
-        - Conduct API testing, stress testing, and ensure that the model integrates seamlessly with the system.  
    - It spent __2 days__ to test the Website.  
    - The result of testing was fine. The Website fit the functions that users need and did not have any bug.  
    - After testing, we have launched the first version of Website to get the first place in the market.  
