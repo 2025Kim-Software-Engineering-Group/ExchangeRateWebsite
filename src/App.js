@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -41,6 +41,7 @@ const LanguageSelector = ({ currentLanguage, setCurrentLanguage }) => {
   );
 };
 
+//CurrencyConverter for desktop
 const CurrencyConverter = ({
   fromCurrency,
   setFromCurrency,
@@ -61,6 +62,24 @@ const CurrencyConverter = ({
   const [toInput, setToInput] = useState(toCurrency);
   const [showDropdownFrom, setShowDropdownFrom] = useState(false);
   const [showDropdownTo, setShowDropdownTo] = useState(false);
+  const dropdownFromRef = useRef(null);
+  const dropdownToRef = useRef(null);
+
+  //Add event listener for ClickOutside event
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownFromRef.current && !dropdownFromRef.current.contains(event.target)) {
+        setShowDropdownFrom(false);
+      }
+      if (dropdownToRef.current && !dropdownToRef.current.contains(event.target)) {
+        setShowDropdownTo(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleCurrencyChange = (type, value) => {
     const upperValue = value.toUpperCase().trim();
@@ -119,7 +138,7 @@ const CurrencyConverter = ({
         </div>
         {/* Currency Selection Row */}
         <div className="currency-row">
-          <div className="currency-input fromCurrency">
+          <div className="currency-input fromCurrency" ref={dropdownFromRef}>
             <input
               type="text"
               value={fromInput}
@@ -195,7 +214,7 @@ const CurrencyConverter = ({
               />
             )}
           </div>
-          <div className="currency-input toCurrency">
+          <div className="currency-input toCurrency" ref={dropdownToRef}>
             <input
               type="text"
               value={toInput}
@@ -262,6 +281,251 @@ const CurrencyConverter = ({
     </div>
   );
 };
+
+//CurrencyConverter for mobile
+const CurrencyConverterMobile = ({
+  fromCurrency,
+  setFromCurrency,
+  toCurrency,
+  setToCurrency,
+  amount,
+  setAmount,
+  exchangeRate,
+  lastUpdated,
+  selectedDate,
+  setSelectedDate,
+  currencies,
+  t,
+  timeframe,
+  setTimeframe
+}) => {
+  const [fromInput, setFromInput] = useState(fromCurrency);
+  const [toInput, setToInput] = useState(toCurrency);
+  const [showDropdownFrom, setShowDropdownFrom] = useState(false);
+  const [showDropdownTo, setShowDropdownTo] = useState(false);
+  const dropdownFromRef = useRef(null);
+  const dropdownToRef = useRef(null);
+
+  //Add event listener for ClickOutside event
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownFromRef.current && !dropdownFromRef.current.contains(event.target)) {
+        setShowDropdownFrom(false);
+      }
+      if (dropdownToRef.current && !dropdownToRef.current.contains(event.target)) {
+        setShowDropdownTo(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleCurrencyChange = (type, value) => {
+    const upperValue = value.toUpperCase().trim();
+    if (currencies.includes(upperValue) || upperValue === '') {
+      if (type === 'from') {
+        setFromCurrency(upperValue);
+        setFromInput(upperValue);
+        setShowDropdownFrom(false);
+      } else {
+        setToCurrency(upperValue);
+        setToInput(upperValue);
+        setShowDropdownTo(false);
+      }
+    } else {
+      if (type === 'from') setFromInput(upperValue);
+      else setToInput(upperValue);
+    }
+  };
+
+  const handleSelectCurrency = (type, currency) => {
+    if (type === 'from') {
+      setFromCurrency(currency);
+      setFromInput(currency);
+      setShowDropdownFrom(false);
+    } else {
+      setToCurrency(currency);
+      setToInput(currency);
+      setShowDropdownTo(false);
+    }
+  };
+
+  const handleExchange = () => {
+    setFromCurrency(toCurrency);
+    setToCurrency(fromCurrency);
+    setFromInput(toInput);
+    setToInput(fromInput);
+  };
+
+  return (
+    <div className="converter-container">
+      <div className="currency-inputs">
+        {/* 添加时间范围选择器 */}
+        <div className="timeframe-selector">
+          <button
+            className={`timeframe-btn ${timeframe === 'weekly' ? 'active' : ''}`}
+            onClick={() => setTimeframe('weekly')}
+          >
+            {t.weekly}
+          </button>
+          <button
+            className={`timeframe-btn ${timeframe === 'yearly' ? 'active' : ''}`}
+            onClick={() => setTimeframe('yearly')}
+          >
+            {t.yearly}
+          </button>
+        </div>
+        {/* Currency Selection Row */}
+        <div className="from-currency-row">
+          {/* From Currency 的国旗 */}
+          <div className="country-flag">
+            {fromCurrency && (
+              <img
+                style={{
+                  width: '48px',      // 与API国旗宽度一致
+                  height: '32px',     // 3:2标准国旗比例 (48*2/3)
+                  objectFit: 'cover', // 保持比例填充容器
+                  display: 'flex'    // 避免行内元素间隙
+                }}
+                src={
+                  fromCurrency.slice(0, 2) === 'EU'
+                    ? '/EU.jpg'
+                    : `https://flagsapi.com/${fromCurrency.slice(0, 2)}/flat/48.png`
+                }
+                alt={`${fromCurrency} flag`}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+            )}
+          </div>
+
+          <div className="currency-input fromCurrency" ref={dropdownFromRef}>
+            <input
+              type="text"
+              value={fromInput}
+              onChange={(e) => {
+                handleCurrencyChange('from', e.target.value);
+                setShowDropdownFrom(true);
+              }}
+              onFocus={() => setShowDropdownFrom(true)}
+              placeholder={t.selectCurrency}
+            />
+            {showDropdownFrom && (
+              <div className="dropdown">
+                {currencies.filter(currency =>
+                  currency.toUpperCase().includes(fromInput.toUpperCase())
+                ).map(currency => (
+                  <div
+                    key={currency}
+                    className="dropdown-item"
+                    onClick={() => handleSelectCurrency('from', currency)}
+                  >
+                    {currency} - {t.currencyNames[currency]}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="amount-input">
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder={t.amount}
+            min="0"
+          />
+        </div>
+
+        <div className="to-currency-row">
+          {/* To Currency 的国旗 */}
+          <div className="country-flag">
+            {toCurrency && (
+              <img
+                style={{
+                  width: '48px',
+                  height: '32px',
+                  objectFit: 'cover',
+                  display: 'block'
+                }}
+                src={
+                  toCurrency.slice(0, 2) === 'EU'
+                    ? '/EU.jpg'
+                    : `https://flagsapi.com/${toCurrency.slice(0, 2)}/flat/48.png`
+                }
+                alt={`${toCurrency} flag`}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+            )}
+          </div>
+          <div className="currency-input toCurrency" ref={dropdownToRef}>
+            <input
+              type="text"
+              value={toInput}
+              onChange={(e) => {
+                handleCurrencyChange('to', e.target.value);
+                setShowDropdownTo(true);
+              }}
+              onFocus={() => setShowDropdownTo(true)}
+              placeholder={t.selectCurrency}
+            />
+            {showDropdownTo && (
+              <div className="dropdown">
+                {currencies.filter(currency =>
+                  currency.toUpperCase().includes(toInput.toUpperCase())
+                ).map(currency => (
+                  <div
+                    key={currency}
+                    className="dropdown-item"
+                    onClick={() => handleSelectCurrency('to', currency)}
+                  >
+                    {currency} - {t.currencyNames[currency]}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="amount-result">
+          <input
+            type="text"
+            value={exchangeRate ? (amount * exchangeRate).toFixed(2) : ''}
+            readOnly
+            placeholder={t.convertedAmount}
+          />
+        </div>
+        
+        <div className="exchange-button-container">
+          <button className="exchange-button" onClick={handleExchange}>
+            <span className="exchange-icon">⇄</span>
+          </button>
+        </div>
+
+        <div className="date-row">
+          <div className="date-input">
+            <input
+              type="date"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              max={new Date().toISOString().split('T')[0]}
+            />
+          </div>
+          <span className="last-updated">
+            {t.lastUpdated}: {lastUpdated}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // 历史汇率图表组件
 const HistoricalChart = ({ historicalRates, fromCurrency, toCurrency, t }) => {
   const chartOptions = {
@@ -316,6 +580,15 @@ const PopularCurrencies = ({ currencyRates, currencies, t }) => (
   </div>
 );
 
+// 条件布局组件
+const DesktopConverter = (props) => (
+  <CurrencyConverter {...props} />
+);
+
+const MobileConverter = (props) => (
+  <CurrencyConverterMobile {...props} />
+);
+
 // 主组件
 export default function App() {
   const [timeframe, setTimeframe] = useState('weekly');
@@ -328,6 +601,15 @@ export default function App() {
   const [historicalRates, setHistoricalRates] = useState({ labels: [], datasets: [] });
   const [currentLanguage, setCurrentLanguage] = useState('en');
   const [currencyRates, setCurrencyRates] = useState({});
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
   const t = translations[currentLanguage];
   const currencies = [
@@ -437,22 +719,42 @@ export default function App() {
 
       <div className="main-container">
         <div className="left-panel">
-          <CurrencyConverter
-            timeframe={timeframe}
-            setTimeframe={setTimeframe}
-            fromCurrency={fromCurrency}
-            setFromCurrency={setFromCurrency}
-            toCurrency={toCurrency}
-            setToCurrency={setToCurrency}
-            amount={amount}
-            setAmount={setAmount}
-            exchangeRate={exchangeRate}
-            lastUpdated={lastUpdated}
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
-            currencies={currencies}
-            t={t}
-          />
+          {isMobile ? (
+            <MobileConverter
+              timeframe={timeframe}
+              setTimeframe={setTimeframe}
+              fromCurrency={fromCurrency}
+              setFromCurrency={setFromCurrency}
+              toCurrency={toCurrency}
+              setToCurrency={setToCurrency}
+              amount={amount}
+              setAmount={setAmount}
+              exchangeRate={exchangeRate}
+              lastUpdated={lastUpdated}
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+              currencies={currencies}
+              t={t}
+            />
+          ) : (
+            <DesktopConverter
+              timeframe={timeframe}
+              setTimeframe={setTimeframe}
+              fromCurrency={fromCurrency}
+              setFromCurrency={setFromCurrency}
+              toCurrency={toCurrency}
+              setToCurrency={setToCurrency}
+              amount={amount}
+              setAmount={setAmount}
+              exchangeRate={exchangeRate}
+              lastUpdated={lastUpdated}
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+              currencies={currencies}
+              t={t}
+            />
+          )}
+
           <HistoricalChart
             historicalRates={historicalRates}
             fromCurrency={fromCurrency}
