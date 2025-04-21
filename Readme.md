@@ -1,7 +1,8 @@
 ## Single picture that shows our project
 ![ExchangeRateWebsite](img/ExchangeRateWebsite.png)
----
 
+ * Demo URL: [YouTube Demo URL](https://www.youtube.com/watch?v=ZQJU0k-lLB0)
+---
 ## Planning Overview  
 We are going to use Agile SW development process. The above is the outline of our planning.  
 
