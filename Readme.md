@@ -1,3 +1,7 @@
+## Single picture that shows our project
+![ExchangeRateWebsite](img/ExchangeRateWebsite.png)
+---
+
 ## Planning Overview  
 We are going to use Agile SW development process. The above is the outline of our planning.  
 
