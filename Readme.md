@@ -1,5 +1,5 @@
 ## Single picture that shows our project
-![ExchangeRateWebsite](img/ExchangeRateWebsite.png)
+![ExchangeRateWebsite](img/ExchangeRateWebsite.jpg)
 
  * Demo URL: [YouTube Demo URL](https://www.youtube.com/watch?v=ZQJU0k-lLB0)
 ---
