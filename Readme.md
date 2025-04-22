@@ -2,6 +2,55 @@
 ![ExchangeRateWebsite](img/ExchangeRateWebsite.jpg)
 
  * Demo URL: [YouTube Demo URL](https://www.youtube.com/watch?v=ZQJU0k-lLB0)
+
+### Minimum operating environment requirements
+
+#### 1. **Development environment**
+- **Node.js**: v14.0.0 or higher
+_Purpose_: JavaScript runtime environment
+_Verification command_: `node -v`
+
+- **npm**: v6.0.0 or higher
+_Purpose_: Package management tool
+_Verification command_: `npm -v`
+
+#### 2. **Browser support**
+- **Modern browsers**:
+- Google Chrome v88+
+- Mozilla Firefox v84+
+- Safari v14+
+- Microsoft Edge v88+
+_Requirement_: Support ES6 syntax, Fetch API and CSS Flexbox/Grid
+
+#### 3. **Operating system**
+- **Desktop system**:
+- Windows 10 or higher
+- macOS 10.15 (Catalina) or higher
+- Linux (Ubuntu 20.04 LTS or equivalent)
+- **Mobile**:
+- iOS 14+
+- Android 10+
+
+#### 4. **Network Requirements**
+- **Internet Connection**:
+_Purpose_: Access to ExchangeRate-API and FlagsAPI
+_Bandwidth_: 1 Mbps minimum
+_Latency_: 500ms maximum
+
+#### 5. **Hardware Requirements**
+- **Memory (RAM)**: 512 MB minimum (1 GB+ recommended)
+- **Storage**: 100 MB free space minimum
+- **Screen Resolution**: 1280×720 pixels minimum
+
+#### 6. **Library Versions**
+- **React**: v17.0.0+
+- **Chart.js**: v3.0.0+
+- **react-chartjs-2**: v4.0.0+
+
+#### 7. **API Key**
+- **ExchangeRate-API**: Need to register and get a free API Key
+_Limitation_: 1,500 requests per month for free version
+
 ---
 ## Planning Overview  
 We are going to use Agile SW development process. The above is the outline of our planning.  
