@@ -622,7 +622,7 @@ export default function App() {
       try {
         // 获取实时汇率
         const rateResponse = await fetch(
-          `https://v6.exchangerate-api.com/v6/70cbad844562588cd1b8e54d/latest/${fromCurrency}`
+          `https://v6.exchangerate-api.com/v6/dd875ed8009b2e791ff987e6/latest/${fromCurrency}`
         );
         const rateData = await rateResponse.json();
 
@@ -663,7 +663,7 @@ export default function App() {
 
           try {
             const response = await fetch(
-              `https://v6.exchangerate-api.com/v6/70cbad844562588cd1b8e54d/history/${fromCurrency}/${year}/${month}/${day}`
+              `https://v6.exchangerate-api.com/v6/dd875ed8009b2e791ff987e6/history/${fromCurrency}/${year}/${month}/${day}`
             );
             const data = await response.json();
 
@@ -692,7 +692,7 @@ export default function App() {
 
         // 获取所有货币汇率
         const allRatesResponse = await fetch(
-          `https://v6.exchangerate-api.com/v6/70cbad844562588cd1b8e54d/latest/USD`
+          `https://v6.exchangerate-api.com/v6/dd875ed8009b2e791ff987e6/latest/USD`
         );
         const allRatesData = await allRatesResponse.json();
 
